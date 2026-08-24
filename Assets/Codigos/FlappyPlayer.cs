@@ -29,21 +29,33 @@ public class FlappyPlayer : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            rb.linearVelocity = new Vector3(
-                0f,
-                forcaDoPulo,
-                0f
-            );
+        // Computador: Espaço
+        bool apertouEspaco = Input.GetKeyDown(KeyCode.Space);
 
-            if (audioSource != null)
-            {
-                audioSource.Play();
-            }
+        // Celular: toque na tela
+        bool tocouNaTela = Input.touchCount > 0 &&
+                           Input.GetTouch(0).phase == TouchPhase.Began;
+
+        if (apertouEspaco || tocouNaTela)
+        {
+            Pular();
         }
 
         InclinarAviao();
+    }
+
+    void Pular()
+    {
+        rb.linearVelocity = new Vector3(
+            0f,
+            forcaDoPulo,
+            0f
+        );
+
+        if (audioSource != null)
+        {
+            audioSource.Play();
+        }
     }
 
     void InclinarAviao()
@@ -69,11 +81,10 @@ public class FlappyPlayer : MonoBehaviour
                 Vector3.right
             );
 
-        modeloAviao.localRotation =
-            Quaternion.Lerp(
-                modeloAviao.localRotation,
-                rotacaoDesejada,
-                velocidadeRotacao * Time.deltaTime
-            );
+        modeloAviao.localRotation = Quaternion.Lerp(
+            modeloAviao.localRotation,
+            rotacaoDesejada,
+            velocidadeRotacao * Time.deltaTime
+        );
     }
 }

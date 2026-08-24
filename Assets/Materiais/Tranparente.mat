@@ -23,33 +23,36 @@ Material:
   m_Name: Tranparente
   m_Shader: {fileID: 10757, guid: 0000000000000000f000000000000000, type: 0}
   m_Parent: {fileID: 10758, guid: 0000000000000000f000000000000000, type: 0}
-  m_ModifiedSerializedProperties: 16
+  m_ModifiedSerializedProperties: 18
   m_ValidKeywords: []
   m_InvalidKeywords:
-  - _ALPHAPREMULTIPLY_ON
   - _SUNDISK_HIGH_QUALITY
-  - _SURFACE_TYPE_TRANSPARENT
-  m_LightmapFlags: 4
+  m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3000
+  m_CustomRenderQueue: 2000
   stringTagMap: {}
   disabledShaderPasses:
   - MOTIONVECTORS
-  - DepthOnly
-  - SHADOWCASTER
+  - GRABPASS
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs: []
     m_Ints: []
     m_Floats:
-    - _DstBlend: 10
-    - _DstBlendAlpha: 10
-    - _Surface: 1
-    - _ZWrite: 0
+    - _AlphaClip: 0
+    - _Blend: 0
+    - _DstBlend: 0
+    - _DstBlendAlpha: 0
+    - _Metallic: 0
+    - _Smoothness: 0
+    - _Surface: 0
+    - _WorkflowMode: 1
+    - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 0}
+    - _CameraFadeParams: {r: 0, g: Infinity, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

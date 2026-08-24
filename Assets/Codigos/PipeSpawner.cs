@@ -2,9 +2,10 @@ using UnityEngine;
 
 public class PipeSpawner : MonoBehaviour
 {
-    [Header("Prefabs dos Canos")]
+    [Header("Prefabs")]
     public GameObject canoCima;
     public GameObject canoBaixo;
+    public GameObject scoreZonePrefab;
 
     [Header("Posição")]
     public float distanciaX = 20f;
@@ -16,7 +17,7 @@ public class PipeSpawner : MonoBehaviour
     [Header("Espaço entre os canos")]
     public float tamanhoDoBuraco = 5f;
 
-    [Header("Intervalo")]
+    [Header("Geração")]
     public float intervalo = 2.5f;
 
     [Header("Velocidade")]
@@ -38,23 +39,20 @@ public class PipeSpawner : MonoBehaviour
 
         if (tempo >= intervalo)
         {
-            CriarCanos();
+            CriarParDeCanos();
             tempo = 0f;
         }
     }
 
-    void CriarCanos()
+    void CriarParDeCanos()
     {
-        // Escolhe uma altura aleatória
         float altura = Random.Range(
             alturaMinima,
             alturaMaxima
         );
 
-        // Posição inicial
         Vector3 posicao = transform.position;
 
-        // Os canos aparecem à direita
         posicao.x = distanciaX;
 
         // =========================
@@ -103,8 +101,34 @@ public class PipeSpawner : MonoBehaviour
             movimentoBaixo.velocidade = velocidadeCanos;
         }
 
-        // Destrói os canos depois de um tempo
+        // =========================
+        // SCORE ZONE
+        // =========================
+
+        Vector3 posicaoScore = posicao;
+
+        posicaoScore.y = altura;
+
+        GameObject scoreZone = Instantiate(
+            scoreZonePrefab,
+            posicaoScore,
+            Quaternion.identity
+        );
+
+        PipeMove movimentoScore =
+            scoreZone.GetComponent<PipeMove>();
+
+        if (movimentoScore != null)
+        {
+            movimentoScore.velocidade = velocidadeCanos;
+        }
+
+        // =========================
+        // DESTRUIR
+        // =========================
+
         Destroy(cima, tempoParaDestruir);
         Destroy(baixo, tempoParaDestruir);
+        Destroy(scoreZone, tempoParaDestruir);
     }
 }
