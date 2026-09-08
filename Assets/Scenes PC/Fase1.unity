@@ -721,7 +721,7 @@ MonoBehaviour:
   modeloAviao: {fileID: 329311168}
   anguloSubindo: -25
   anguloCaindo: 20
-  velocidadeRotacao: 5
+  velocidadeRotacao: 3
 --- !u!4 &329311168 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 94f97dcf0fff4844bb77bc5ee6b6f1f8, type: 3}
